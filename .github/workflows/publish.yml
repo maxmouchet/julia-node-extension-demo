@@ -1,9 +1,11 @@
-name: CI
+name: Publish
 
-on: [push, pull_request]
+on:
+  release:
+    types: [created]
 
 jobs:
-  test:
+  build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -21,9 +23,20 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org'
       - name: 'Setup'
         run: julia -e "using Pkg; Pkg.add(\"PackageCompiler\")"
       - name: 'Build'
         run: npm install --build-from-source
       - name: 'Test'
         run: node test.js
+      - name: 'Publish binary'
+        run: ./node_modules/node-pre-gyp/bin/node-pre-gyp package publish
+        env:
+          node_pre_gyp_accessKeyId: ${{ secrets.S3_ACCESS_KEY_ID }}
+          node_pre_gyp_secretAccessKey: ${{ secret.S3_SECRET }}
+      - name: 'Publish package'
+        if: ${{ matrix.os }} == 'ubuntu-latest'
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

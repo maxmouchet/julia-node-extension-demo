@@ -1,5 +1,5 @@
 {
-  "name": "julia-node-extension-demo",
+  "name": "@maxmouchet/julia-node-extension-demo",
   "version": "1.0.0",
   "description": "Demonstration of interfacing Julia and Node.js code.",
   "main": "index.js",
@@ -28,7 +28,7 @@
   },
   "binary": {
     "module_name": "binding",
-    "module_path": "./dist/napi-v{napi_build_version}-{platform}-{arch}/",
+    "module_path": "./dist/{platform}-{arch}-napi-v{napi_build_version}/",
     "remote_path": "./julia-node-extension-demo/v{version}/{configuration}/",
     "package_name": "{platform}-{arch}-napi-v{napi_build_version}.tar.gz",
     "host": "https://mmouchet-binaries.s3-eu-central-1.amazonaws.com",
