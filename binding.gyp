@@ -18,8 +18,12 @@
             "libraries": [
                 "-ljulia",
                 "-L'<(PRODUCT_DIR)/lib'",
+                # Linux
                 "-Wl,-rpath,'$$ORIGIN/lib'",
                 "-Wl,-rpath,'$$ORIGIN/lib/julia'",
+                # macOS
+                "-Wl,-rpath,'@loader_path/lib'",
+                "-Wl,-rpath,'@loader_path/lib/julia'",
             ],
             "actions": [
                 {
