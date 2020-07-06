@@ -10,7 +10,7 @@
 #include <libgen.h>
 #endif
 
-#ifdef __WIN32
+#ifdef _WIN32
 #define LIBJULIA "libjulia.dll"
 #elif __APPLE__
 #define LIBJULIA "libjulia.dylib"
