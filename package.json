@@ -1,6 +1,6 @@
 {
   "name": "@maxmouchet/julia-node-extension-demo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Demonstration of interfacing Julia and Node.js code.",
   "main": "index.js",
   "scripts": {
