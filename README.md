@@ -15,6 +15,19 @@
 - [ ] Document node-pre-gyp paths
 - [ ] Find a package that uses system libs (SpecialFunctions ?) in order to test lib. relocation.
 
+
+## Requirements
+
+#### Running the extension
+
+- Node.js v14+ ([N-API v6](https://nodejs.org/api/n-api.html#n_api_n_api_version_matrix) is required for `BigInt64Array`)
+- x86-64 Linux or macOS; Windows is not (yet) supported due to build issues (PR are welcome!)
+
+#### Building the extension
+
+- Node.js v14+
+- Julia v1.4+
+
 ```bash
 # Requires Node 14 (for BigInt64Array) (N-API > 5).
 # Windows is not supported (yet).
@@ -23,6 +36,15 @@
 # If you are on a different architecture, node-pre-gyp will trigger a build.
 npm install @maxmouchet/julia-node-extension-demo
 ```
+
+```js
+const clustering = require('@maxmouchet/julia-node-extension-demo')
+// X: dxn matrix (n d-dimensional data points) in column-major order
+// k: number of clusters
+clustering.kmeans(X: Float64Array, d: Number, k: Number)
+```
+
+See [test.js](test.js) and [example/](example/) for detailed examples.
 
 ## Overview
 
