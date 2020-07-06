@@ -14,7 +14,6 @@
 - [ ] README
 - [ ] Document node-pre-gyp paths
 - [ ] Find a package that uses system libs (SpecialFunctions ?) in order to test lib. relocation.
-- [ ] pre-commit with Black and clang-format
 - [ ] npm package
 
 ```bash
