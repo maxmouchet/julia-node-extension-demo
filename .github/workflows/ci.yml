@@ -30,6 +30,7 @@ jobs:
           name: dist
           path: dist
 
+  # Test in a separate environment where Julia is not installed.
   test:
     needs: build
     runs-on: ${{ matrix.os }}
@@ -47,4 +48,6 @@ jobs:
         with:
           name: dist
       - name: "Test"
-        run: node test.js
+        run: |
+          npm install node-pre-gyp
+          node test.js
