@@ -21,7 +21,7 @@
 
 # Pre-built binaries are avaiable for Linux and macOS (x86-64).
 # If you are on a different architecture, node-pre-gyp will trigger a build.
-npm install @maxmouchet/julia-node-demo
+npm install @maxmouchet/julia-node-extension-demo
 ```
 
 ## Overview
