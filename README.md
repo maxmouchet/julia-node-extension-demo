@@ -1,21 +1,19 @@
 # julia-node-extension-demo
 
 [![CI](https://github.com/maxmouchet/julia-node-extension-demo/workflows/CI/badge.svg)](https://github.com/maxmouchet/julia-node-extension-demo/actions?query=workflow%3ACI)
-[![Platform](https://img.shields.io/badge/Platform-linux--x64%20|%20macos--x64-blue.svg)](#)
+[![Publish](https://github.com/maxmouchet/julia-node-extension-demo/workflows/Publish/badge.svg)](https://github.com/maxmouchet/julia-node-extension-demo/actions?query=workflow%3APublish)
+[![npm](https://img.shields.io/npm/v/@maxmouchet/julia-node-extension-demo)](https://www.npmjs.com/package/@maxmouchet/julia-node-extension-demo)
 [![JuliaCon 2020](https://img.shields.io/badge/Talk-JuliaCon%202020-761c7c)](https://pretalx.com/juliacon2020/talk/Q88P8U/)
 
 **Work in progress.**
 
 #### TODO
 
-- [ ] Release workflow
-- [ ] CI build/test steps (test on fresh Julia installation)
 - [ ] Windows not supported (build errors, cross-compilation not supported by node-gyp, PR welcome!)
 - [ ] Example project (Express API)
 - [ ] README
 - [ ] Document node-pre-gyp paths
 - [ ] Find a package that uses system libs (SpecialFunctions ?) in order to test lib. relocation.
-- [ ] npm package
 
 ```bash
 # Requires Node 14 (for BigInt64Array) (N-API > 5).
