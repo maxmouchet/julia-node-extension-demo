@@ -1,0 +1,39 @@
+{
+  "name": "julia-node-extension-demo",
+  "version": "1.0.0",
+  "description": "Demonstration of interfacing Julia and Node.js code.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node-pre-gyp install --fallback-to-build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxmouchet/julia-node-extension-demo.git"
+  },
+  "author": "Maxime Mouchet <max@maxmouchet.com>",
+  "license": "MIT",
+  "gypfile": true,
+  "bugs": {
+    "url": "https://github.com/maxmouchet/julia-node-extension-demo/issues"
+  },
+  "homepage": "https://github.com/maxmouchet/julia-node-extension-demo#readme",
+  "dependencies": {
+    "node-addon-api": "^3.0.0",
+    "node-gyp": "^7.0.0",
+    "node-pre-gyp": "github:mapbox/node-pre-gyp#support-symlinks"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.709.0"
+  },
+  "binary": {
+    "module_name": "binding",
+    "module_path": "./dist/napi-v{napi_build_version}-{platform}-{arch}/",
+    "remote_path": "./julia-node-extension-demo/v{version}/{configuration}/",
+    "package_name": "{platform}-{arch}-napi-v{napi_build_version}.tar.gz",
+    "host": "https://mmouchet-binaries.s3-eu-central-1.amazonaws.com",
+    "napi_versions": [
+      6
+    ]
+  }
+}

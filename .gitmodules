@@ -1,0 +1,3 @@
+[submodule "julia/Clustering.jl"]
+	path = julia/Clustering.jl
+	url = https://github.com/JuliaStats/Clustering.jl.git
