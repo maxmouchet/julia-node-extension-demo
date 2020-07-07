@@ -9,27 +9,32 @@
 
 #### TODO
 
-- [ ] Windows not supported (build errors, cross-compilation not supported by node-gyp, PR welcome!)
+- [ ] Windows not supported (build errors, cross-compilation not supported by node-gyp, PRs welcome!)
 - [ ] Example project (Express API)
-- [ ] README
+- [ ] README (+ table of contents)
 - [ ] Document node-pre-gyp paths
-- [ ] Find a package that uses system libs (SpecialFunctions ?) in order to test lib. relocation.
+- [ ] Find a package that uses system libs (SpecialFunctions?) in order to test lib. relocation.
 
+## Overview
+
+- Describe tools (PackageCompiler.jl, node-gyp, ...)
 
 ## Requirements
 
 #### Running the extension
 
-- Node.js v14+ ([N-API v6](https://nodejs.org/api/n-api.html#n_api_n_api_version_matrix) is required for `BigInt64Array`)
+- Node.js v10.16+ ([N-API v4](https://nodejs.org/api/n-api.html#n_api_n_api_version_matrix))
 - x86-64 Linux or macOS; Windows is not (yet) supported due to build issues (PR are welcome!)
 
 #### Building the extension
 
-- Node.js v14+
+- Node.js v10.16+
 - Julia v1.4+
 
+## Using the extension
+
 ```bash
-# Requires Node 14 (for BigInt64Array) (N-API > 5).
+# Requires Node v10.16+ (N-API >= 4).
 # Windows is not supported (yet).
 
 # Pre-built binaries are avaiable for Linux and macOS (x86-64).
@@ -46,9 +51,10 @@ clustering.kmeans(X: Float64Array, d: Number, k: Number)
 
 See [test.js](test.js) and [example/](example/) for detailed examples.
 
-## Overview
+## Building the extension
 
-- Describe tools (PackageCompiler.jl, node-gyp, ...)
+- Automatically
+- Manually
 
 ## Resources
 
