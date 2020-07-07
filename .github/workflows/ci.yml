@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         julia-version: ['1.4']
-        node-version: ['14.x']
+        node-version: ['10.x', '14.x']
         os: [ubuntu-latest, macos-latest]
 
     steps:

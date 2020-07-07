@@ -3,6 +3,13 @@
 
 #include <julia.h>
 
+// Convert `vec` to a `Vector{type}`.
+jl_value_t *jl_convert_vector(jl_datatype_t *type, jl_value_t *vec) {
+  jl_value_t *atype = jl_apply_array_type((jl_value_t *)type, 1);
+  jl_function_t *convert = jl_get_function(jl_base_module, "convert");
+  return jl_call2(convert, atype, vec);
+}
+
 jl_value_t *jl_tuple2(jl_datatype_t *type, void *a, void *b) {
   jl_value_t *ttype = jl_tupletype_fill(2, (jl_value_t *)type);
   return jl_new_struct((jl_datatype_t *)ttype, a, b);

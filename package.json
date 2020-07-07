@@ -33,7 +33,7 @@
     "package_name": "{platform}-{arch}-napi-v{napi_build_version}.tar.gz",
     "host": "https://mmouchet-binaries.s3-eu-central-1.amazonaws.com",
     "napi_versions": [
-      6
+      4
     ]
   }
 }

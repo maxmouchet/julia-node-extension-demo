@@ -53,12 +53,16 @@ Value Kmeans(const CallbackInfo &info) {
   jl_value_t *jl_converged = jl_get_field(jl_result, "converged");
   jl_value_t *jl_iterations = jl_get_field(jl_result, "iterations");
 
+  // We convert Int64s to Int32s since Node.js has limited Int64 support.
+  jl_value_t *jl_assignments_i32 =
+      jl_convert_vector(jl_int32_type, jl_assignments);
+
   // (5) Convert Julia values
   // We need to copy Julia GC managed arrays to Node GC managed arrays.
-  BigInt64Array assignments =
-      BigInt64Array::New(env, jl_array_len(jl_assignments));
-  std::copy_n((int64_t *)jl_array_data(jl_assignments),
-              jl_array_len(jl_assignments), assignments.Data());
+  Int32Array assignments =
+      Int32Array::New(env, jl_array_len(jl_assignments_i32));
+  std::copy_n((int32_t *)jl_array_data(jl_assignments_i32),
+              jl_array_len(jl_assignments_i32), assignments.Data());
 
   Float64Array centers = Float64Array::New(env, jl_array_len(jl_centers));
   std::copy_n((double *)jl_array_data(jl_centers), jl_array_len(jl_centers),
