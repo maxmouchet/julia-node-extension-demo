@@ -11,8 +11,7 @@ const randDataset = (d, n, k) => {
   // There is no matrix type in JavaScript:
   // [[...], [...], ...] is an array of array (array of pointers).
   // Julia is "column-major"; the columns of a matrix are stored
-  // one after the other, contiguously, in memory:
-  // data[i,j] = data[j*d+i]
+  // one after the other, contiguously, in memory: data[i,j] = data[j*d+i].
   // kmeans expects a dxn data matrix (each column is a d-dimensional data point).
   const data = new Float64Array(d * n);
 
