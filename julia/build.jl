@@ -1,9 +1,11 @@
 using PackageCompiler: bundle_artifacts, bundle_julia_libraries, create_pkg_context, create_sysimage
 using Libdl
 
-project = joinpath(@__DIR__, "Clustering.jl")
 builddir = length(ARGS) > 0 ? ARGS[1] : "build"
+project = joinpath(@__DIR__, "Clustering.jl")
 sysimage_path = joinpath(builddir, "lib", "sysimage.$(Libdl.dlext)")
+
+mkpath(builddir)
 
 @info "Building Julia system image..." builddir=builddir project=project sysimage_path=sysimage_path
 
