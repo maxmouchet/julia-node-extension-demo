@@ -39,14 +39,14 @@ Value Kmeans(const CallbackInfo &info) {
 
   // (3) Load Julia module
   jl_module_t *jl_clustering = jl_require(jl_main_module, "Clustering");
-  rethrow_julia_exception(info.Env());
+  rethrow_julia_exception(env);
   jl_function_t *jl_clustering_kmeans =
       jl_get_function(jl_clustering, "kmeans");
 
   // (4) Call Julia function
   jl_value_t *jl_result =
       jl_call2(jl_clustering_kmeans, (jl_value_t *)jl_X, jl_k);
-  rethrow_julia_exception(info.Env());
+  rethrow_julia_exception(env);
 
   jl_value_t *jl_assignments = jl_get_field(jl_result, "assignments");
   jl_value_t *jl_centers = jl_get_field(jl_result, "centers");
@@ -71,7 +71,7 @@ Value Kmeans(const CallbackInfo &info) {
   bool converged = jl_unbox_bool(jl_converged);
   int64_t iterations = jl_unbox_int64(jl_iterations);
 
-  Object obj = Object::New(info.Env());
+  Object obj = Object::New(env);
   obj.Set("assignments", assignments);
   obj.Set("centers", centers);
   obj.Set("converged", converged);
