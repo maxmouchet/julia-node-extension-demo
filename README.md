@@ -7,6 +7,9 @@
 
 **Work in progress.**
 
+This repository shows how to build a Node.js native extension that calls Julia code from a precompiled system image.
+For an introduction in video, see the [JuliaCon 2020 talk](https://pretalx.com/juliacon2020/talk/Q88P8U/).
+
 [Overview](#overview)
 • [Requirements](#requirements)
 • [Running the extension](#running-the-extension)
@@ -103,4 +106,4 @@ node/ # C++ extension
 
 ## Project Status
 
-The package is tested against Julia 1.4 and Node.js v10/v14.
+The package is tested against Julia 1.4 and Node.js v10/v14, on Ubuntu and macOS.
