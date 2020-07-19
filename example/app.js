@@ -21,6 +21,21 @@ const toJuliaMatrix = (Type, data) => {
 
 // TODO: fromJuliaMatrix
 
+function replacer(key, value) {
+  // Filtering out properties
+  if (key == 'assignments') {
+      return Array.from(value.values());
+  }
+  if (key == 'centers') {
+    let res = [];
+    for (let i = 0; i < value.length; i += 2) {
+        res.push([value[i], value[i+1]]);
+    }
+      return res;
+  }
+  return value;
+}
+
 process.on('SIGINT', () => process.exit());
 
 app.use(express.json());
@@ -29,8 +44,8 @@ app.post('/kmeans', (req, res) => {
   const d = req.body.data[0].length;
   const { k } = req.body;
   const matrix = toJuliaMatrix(Float64Array, req.body.data);
-  console.log(clustering.kmeans(matrix, d, k));
-  res.send(JSON.stringify(clustering.kmeans(matrix, d, k)));
+  const result = clustering.kmeans(matrix, d, k);
+  res.send(JSON.stringify(result, replacer));
 });
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

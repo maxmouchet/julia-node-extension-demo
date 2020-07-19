@@ -26,6 +26,8 @@ const params = {
   k: 3,
 };
 
+console.log('POST http://localhost:3000/kmeans');
+console.log(params);
 request.post('http://localhost:3000/kmeans', { json: params }, (error, response, body) => {
   console.log(body);
 });
