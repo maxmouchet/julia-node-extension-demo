@@ -8,6 +8,7 @@
 **Work in progress.**
 
 1. [Overview](#overview)
+1. [Requirements](#requirements)
 1. [Running the extension](#running-the-extension)
 1. [Building the extension](#building-the-extension)
 1. [Resources](#resources)
@@ -25,15 +26,16 @@
 - Describe tools (PackageCompiler.jl, node-gyp, ...)
 
 <p align="center">
-  <img src="/assets/binding.png" alt="N-API diagram" width="700px"/>
+  <img src="/assets/binding.png" alt="N-API diagram" width="800px"/>
 </p>
 
-## Running the extension
-
-### Requirements
+## Requirements
 
 - Node.js v10.16+ ([N-API v4](https://nodejs.org/api/n-api.html#n_api_n_api_version_matrix))
+- Julia v1.4 (only for building the extension)
 - x86-64 Linux or macOS; Windows is not (yet) supported due to build issues (PR are welcome!)
+
+## Running the extension
 
 ### Installation
 
@@ -59,13 +61,18 @@ See [test.js](test.js) and [example/](example/) for detailed examples.
 
 ## Building the extension
 
-- Automatically
-- Manually
+```bash
+# Run build.jl and compile binding.cc
+# => dist/linux-x64-napi-v4/binding.node
+./node_modules/node-pre-gyp/bin/node-pre-gyp build
 
-### Requirements
+# Package everything together
+# => build/stage/julia-node-extension-demo/vx.y.z/Release/linux-x64-napi-v4.tar.gz
+./node_modules/node-pre-gyp/bin/node-pre-gyp package
 
-- Node.js v10.16+
-- Julia v1.4+
+# Upload the package to Amazon S3
+./node_modules/node-pre-gyp/bin/node-pre-gyp publish
+```
 
 ## Resources
 
