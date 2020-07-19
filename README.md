@@ -7,11 +7,11 @@
 
 **Work in progress.**
 
-1. [Overview](#overview)
-1. [Requirements](#requirements)
-1. [Running the extension](#running-the-extension)
-1. [Building the extension](#building-the-extension)
-1. [Resources](#resources)
+[Overview](#overview)
+• [Requirements](#requirements)
+• [Running the extension](#running-the-extension)
+• [Building the extension](#building-the-extension)
+• [Resources](#resources)
 
 #### TODO
 
@@ -62,6 +62,8 @@ See [test.js](test.js) and [example/](example/) for detailed examples.
 ## Building the extension
 
 ```bash
+npm install node-pre-gyp
+
 # Run build.jl and compile binding.cc
 # => dist/linux-x64-napi-v4/binding.node
 ./node_modules/node-pre-gyp/bin/node-pre-gyp build
