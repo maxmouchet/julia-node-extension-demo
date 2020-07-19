@@ -28,5 +28,5 @@ const randDataset = (d, n, k) => {
 const dataset = randDataset(2, 100, 3);
 console.log(clustering.kmeans(dataset, 2, 3));
 
-// Example exception when k > n.
-clustering.kmeans(dataset, 2, 300);
+// // Example exception when k > n.
+// clustering.kmeans(dataset, 2, 300);
