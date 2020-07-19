@@ -1,4 +1,4 @@
-# julia-node-extension-demo
+# Integrate Julia and Javascript with Node.js extensions
 
 [![CI](https://github.com/maxmouchet/julia-node-extension-demo/workflows/CI/badge.svg)](https://github.com/maxmouchet/julia-node-extension-demo/actions?query=workflow%3ACI)
 [![Publish](https://github.com/maxmouchet/julia-node-extension-demo/workflows/Publish/badge.svg)](https://github.com/maxmouchet/julia-node-extension-demo/actions?query=workflow%3APublish)
@@ -6,6 +6,8 @@
 [![JuliaCon 2020](https://img.shields.io/badge/Talk-JuliaCon%202020-761c7c)](https://pretalx.com/juliacon2020/talk/Q88P8U/)
 
 **Work in progress.**
+
+1. [Overview](#Overview)
 
 #### TODO
 
@@ -19,19 +21,18 @@
 
 - Describe tools (PackageCompiler.jl, node-gyp, ...)
 
-## Requirements
+<p align="center">
+  <img src="/assets/binding.png" alt="N-API diagram" width="700px"/>
+</p>
 
-#### Running the extension
+## Running the extension
+
+### Requirements
 
 - Node.js v10.16+ ([N-API v4](https://nodejs.org/api/n-api.html#n_api_n_api_version_matrix))
 - x86-64 Linux or macOS; Windows is not (yet) supported due to build issues (PR are welcome!)
 
-#### Building the extension
-
-- Node.js v10.16+
-- Julia v1.4+
-
-## Using the extension
+### Installation
 
 ```bash
 # Requires Node v10.16+ (N-API >= 4).
@@ -41,6 +42,8 @@
 # If you are on a different architecture, node-pre-gyp will trigger a build.
 npm install @maxmouchet/julia-node-extension-demo
 ```
+
+### Example
 
 ```js
 const clustering = require('@maxmouchet/julia-node-extension-demo')
@@ -55,6 +58,11 @@ See [test.js](test.js) and [example/](example/) for detailed examples.
 
 - Automatically
 - Manually
+
+### Requirements
+
+- Node.js v10.16+
+- Julia v1.4+
 
 ## Resources
 
@@ -83,4 +91,4 @@ node/ # C++ extension
 
 ## Project Status
 
-The package is tested against xxx.
+The package is tested against Julia 1.4 and Node.js v10/v14.
