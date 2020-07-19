@@ -7,7 +7,10 @@
 
 **Work in progress.**
 
-1. [Overview](#Overview)
+1. [Overview](#overview)
+1. [Running the extension](#running-the-extension)
+1. [Building the extension](#building-the-extension)
+1. [Resources](#resources)
 
 #### TODO
 
