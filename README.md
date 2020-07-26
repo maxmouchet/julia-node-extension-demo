@@ -20,9 +20,7 @@ For an introduction in video, see the [JuliaCon 2020 talk](https://pretalx.com/j
 
 - [ ] Windows not supported (build errors, cross-compilation not supported by node-gyp, PRs welcome!)
 - [ ] Example project (Express API)
-- [ ] README (+ table of contents)
 - [ ] Document node-pre-gyp paths
-- [ ] Find a package that uses system libs (SpecialFunctions?) in order to test lib. relocation.
 
 ## Overview
 
@@ -31,6 +29,22 @@ For an introduction in video, see the [JuliaCon 2020 talk](https://pretalx.com/j
 <p align="center">
   <img src="/assets/binding.png" alt="N-API diagram" width="800px"/>
 </p>
+
+```bash
+├── binding.gyp        # Build system configuration
+├── example            # Example Express API
+│   ├── app.js           # Server
+│   └── test.js          # Client
+├── index.js           # Extension loader
+├── julia              # Julia system image
+│   ├── build.jl         # System image build script
+│   └── Clustering.jl    # Target package
+├── node               # Node.js extension
+│   ├── binding.cc       # Extension code
+│   ├── extra.h          # Helpers for the Julia C API
+│   └── init.h           # Helpers for Julia initialization
+└── test.js            # Extension test
+```
 
 ## Requirements
 
