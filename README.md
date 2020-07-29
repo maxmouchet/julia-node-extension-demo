@@ -5,8 +5,6 @@
 [![npm](https://img.shields.io/npm/v/@maxmouchet/julia-node-extension-demo)](https://www.npmjs.com/package/@maxmouchet/julia-node-extension-demo)
 [![JuliaCon 2020](https://img.shields.io/badge/Talk-JuliaCon%202020-761c7c)](https://pretalx.com/juliacon2020/talk/Q88P8U/)
 
-**Work in progress.**
-
 This repository shows how to build a Node.js native extension that calls Julia code from a precompiled system image.
 For an introduction in video, see the [JuliaCon 2020 talk](https://pretalx.com/juliacon2020/talk/Q88P8U/).
 
@@ -16,19 +14,35 @@ For an introduction in video, see the [JuliaCon 2020 talk](https://pretalx.com/j
 • [Building the extension](#building-the-extension)
 • [Resources](#resources)
 
-#### TODO
-
-- [ ] Windows not supported (build errors, cross-compilation not supported by node-gyp, PRs welcome!)
-- [ ] Example project (Express API)
-- [ ] Document node-pre-gyp paths
-
 ## Overview
 
-- Describe tools (PackageCompiler.jl, node-gyp, ...)
+In this repository we consider the following use case:
+- You have an algorithm written in Julia, and you want to use this algorithm in a Node.js environment.  
+- You can't or you don't want to install Julia on your servers.  
+- You want to avoid Julia compilation costs and you want to share data efficiently between the Julia and Node.js runtimes.
+
+To achieve this goal, we propose a two-step approach:
+1. Build a Julia system image which includes your precompiled code.
+2. Build a Node.js native extension in C/C++ which glues together the Julia and Node.js runtimes.
+
+The main drawbacks of this approach are:
+- It requires to write C/C++ glue code.
+- Changes to the Julia code requires re-building the system image, and (potentially) adapting the C/C++ code.
 
 <p align="center">
-  <img src="/assets/binding.png" alt="N-API diagram" width="800px"/>
+  <img src="/assets/binding.png" alt="N-API diagram" width="800px"/><br/>
+  The main goal of the Node.js extension is to convert between Julia and Node.js data types.
 </p>
+
+<!-- This approach is similar to [pyjulia](https://github.com/JuliaPy/pyjulia) for Python or [JuliaCall](https://cran.r-project.org/web/packages/JuliaCall/index.html) for R, with the addition of the system image. -->
+
+We use the following tools:
+- [PackageCompiler.jl](https://github.com/JuliaLang/PackageCompiler.jl) to build the Julia system image.
+- [node-addon-api](https://github.com/nodejs/node-addon-api) a C++ wrapper of [N-API](https://nodejs.org/dist/latest/docs/api/n-api.html) to write the Node.js extension.
+- [node-gyp](https://github.com/nodejs/node-gyp) to build the extension.
+- [node-pre-gyp](https://github.com/mapbox/node-pre-gyp) to package and distribute the extension.
+
+### Repository structure
 
 ```bash
 ├── binding.gyp        # Build system configuration
@@ -74,7 +88,7 @@ const clustering = require('@maxmouchet/julia-node-extension-demo')
 clustering.kmeans(X: Float64Array, d: Number, k: Number)
 ```
 
-See [test.js](test.js) and [example/](example/) for detailed examples.
+See [test.js](test.js) and [example/](example/) for more complete examples.
 
 ## Building the extension
 
@@ -95,28 +109,12 @@ npm install node-pre-gyp
 
 ## Resources
 
-- https://docs.julialang.org/en/v1/manual/embedding/
-- https://github.com/JuliaLang/julia/blob/master/src/julia.h
-- https://github.com/JuliaLang/julia/blob/master/src/jlapi.c
-- https://github.com/nodejs/node-addon-api/blob/master/doc/node-gyp.md
-- https://github.com/mapbox/node-pre-gyp
-- https://www.mikeash.com/pyblog/friday-qa-2009-11-06-linking-and-install-names.html
+- [Julia Documentation: Embedding](https://docs.julialang.org/en/v1/manual/embedding/)
+- [julia.h](https://github.com/JuliaLang/julia/blob/master/src/julia.h) and [jlapi.c](https://github.com/JuliaLang/julia/blob/master/src/jlapi.c) source files to browse the Julia C API.
+- [node-addon-api usage with node-gyp](https://github.com/nodejs/node-addon-api/blob/master/doc/node-gyp.md)
+- [node-pre-gyp documentation](https://github.com/mapbox/node-pre-gyp)
 - [julia #32614 - Make it easier for embedded Julia to use a custom system image](https://github.com/JuliaLang/julia/issues/32614)
 - [julia #28886 - Test and document embedding with dynamically loaded libjulia.](https://github.com/JuliaLang/julia/pull/28886)
-
-```
-julia/ # build a julia system image
-node/ # C++ extension
-```
-
-## Adapt to your package
-
-- In julia/build.jl: replace project path, and precompile_execution_file if needed.
-
-## Debugging
-
-- Manual build of the image
-- Node-pre-gyp by hand
 
 ## Project Status
 
