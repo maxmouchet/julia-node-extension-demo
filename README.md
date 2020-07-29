@@ -45,6 +45,9 @@ We use the following tools:
 ### Repository structure
 
 ```bash
+
+├── .github
+│   └── workflows      # GitHub workflows for testing and distribution
 ├── binding.gyp        # Build system configuration
 ├── example            # Example Express API
 │   ├── app.js           # Server
