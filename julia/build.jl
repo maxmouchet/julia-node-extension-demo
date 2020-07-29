@@ -14,20 +14,20 @@ ctx = create_pkg_context(project)
 bundle_artifacts(ctx, builddir)
 bundle_julia_libraries(builddir)
 
-# Copy Project.toml (explain why)
 cp(joinpath(project, "Project.toml"), joinpath(builddir, "lib", "Project.toml"))
 
 create_sysimage(
     :Clustering,
     sysimage_path = sysimage_path,
     project = project,
-    # Test only kmeans, others failing on Julia 1.5
+    # NOTE: Test only kmeans, others failing on Julia 1.5
     # TODO: Enable other tests
     precompile_execution_file = joinpath(project, "test", "kmeans.jl"),
     # precompile_execution_file = joinpath(project, "test", "runtests.jl"),
     # Optionally, to minimize the image size.
     # incremental = false,
     # filter_stdlibs = true,
+    # Optionally, to target a specific CPU.
     # Use `julia -C help` to list CPU targets.
     # cpu_target = skylake
 )
