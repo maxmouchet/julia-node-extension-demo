@@ -18,7 +18,6 @@
 #define LIBJULIA "libjulia.so"
 #endif
 
-// TODO: Explain why
 // See https://github.com/JuliaLang/julia/issues/32614
 // Adapted from jl_init()
 // https://github.com/JuliaLang/julia/blob/master/src/jlapi.c
@@ -61,7 +60,6 @@ void init_julia() {
   // libjuliadir.
   char *libjuliadir = find_libjulia_dir();
 
-  // TODO: Explain why
   char buf[PATH_MAX];
   snprintf(buf, sizeof(buf), "JULIA_LOAD_PATH=%s", libjuliadir);
   putenv(buf);
