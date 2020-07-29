@@ -4,9 +4,8 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-// TODO: Multithreading (test with a promise?)
-
-// Convert and transpose a JS array of rows to a matrix (column-major storage).
+// Convert and transpose a JS array of rows to a matrix (column-major storage),
+// based on JS TypedArray.
 const toJuliaMatrix = (Type, data) => {
   const nr = data.length;
   const nc = data[0].length;
@@ -19,19 +18,17 @@ const toJuliaMatrix = (Type, data) => {
   return matrix;
 };
 
-// TODO: fromJuliaMatrix
-
+// Pretty-printing of JS TypedArray
 function replacer(key, value) {
-  // Filtering out properties
-  if (key == 'assignments') {
-      return Array.from(value.values());
+  if (key === 'assignments') {
+    return Array.from(value.values());
   }
-  if (key == 'centers') {
-    let res = [];
+  if (key === 'centers') {
+    const res = [];
     for (let i = 0; i < value.length; i += 2) {
-        res.push([value[i], value[i+1]]);
+      res.push([value[i], value[i + 1]]);
     }
-      return res;
+    return res;
   }
   return value;
 }
